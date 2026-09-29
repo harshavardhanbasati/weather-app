@@ -1,3 +1,6 @@
+import "./App.css"
+import { useState } from "react"
+
 import Navbar from "./components/Navbar"
 import SearchBar from "./components/SearchBar"
 import WeatherCard from "./components/WeatherCard"
@@ -8,8 +11,8 @@ import ErrorMessage from "./components/ErrorMessage"
 
 import { useWeather } from "./context/WeatherContext"
 
-
 function App() {
+  const [isDark, setIsDark] = useState(false)
 
   const {
     weather,
@@ -19,48 +22,34 @@ function App() {
     fetchWeather,
   } = useWeather()
 
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fff8f0] via-[#eef6ff] to-[#f5f3ff] text-slate-800">
+    <div className={`app-shell${isDark ? " dark-theme" : ""}`}>
+      <Navbar
+        isDark={isDark}
+        onThemeToggle={() => setIsDark((current) => !current)}
+      />
 
-      <Navbar />
-
-      <main className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
-
+      <main className="app-container">
         <div className="mx-auto max-w-3xl">
-
           <SearchBar
             onSearch={fetchWeather}
             loading={loading}
           />
 
           <ErrorMessage message={error} />
-
         </div>
 
-
-        {loading && !weather && (
-          <Loading />
-        )}
-
+        {loading && !weather && <Loading />}
 
         <WeatherCard
           weather={weather}
           location={location}
         />
 
+        <WeatherDetails weather={weather} />
 
-        <WeatherDetails
-          weather={weather}
-        />
-
-
-        <Forecast
-          weather={weather}
-        />
-
+        <Forecast weather={weather} />
       </main>
-
     </div>
   )
 }

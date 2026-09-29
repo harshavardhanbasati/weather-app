@@ -31,17 +31,12 @@ function WeatherDetails({ weather }) {
 
   return (
     <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-
       {details.map((detail) => (
-
         <div
           key={detail.title}
-          className="rounded-2xl border border-sky-100 bg-white/75 p-5 shadow-sm"
+          className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
         >
-
-          <div className="text-2xl">
-            {detail.icon}
-          </div>
+          <div className="text-2xl">{detail.icon}</div>
 
           <p className="mt-3 text-sm text-slate-500">
             {detail.title}
@@ -50,11 +45,8 @@ function WeatherDetails({ weather }) {
           <p className="mt-1 text-xl font-bold text-slate-800">
             {detail.value}
           </p>
-
         </div>
-
       ))}
-
     </div>
   )
 }

@@ -1,10 +1,10 @@
-function Navbar() {
-  return (
-    <nav className="border-b border-sky-100 bg-white/70 backdrop-blur-md">
-      
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
+import Theme from "./theme"
 
-        <h1 className="text-xl font-bold text-slate-800 sm:text-2xl">
+function Navbar({ isDark, onThemeToggle }) {
+  return (
+    <nav className="border-b border-slate-200 bg-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+        <h1 className="text-xl font-bold text-slate-800 sm:text-2xl-center">
           🌦️ WeatherNow
         </h1>
 
@@ -12,8 +12,8 @@ function Navbar() {
           Live Weather Dashboard
         </p>
 
+        <Theme isDark={isDark} onToggle={onThemeToggle} />
       </div>
-
     </nav>
   )
 }
